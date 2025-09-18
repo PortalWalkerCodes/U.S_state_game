@@ -1,8 +1,8 @@
 import turtle
 import pandas
-from tkinter import *
 from tkinter import messagebox
 import os
+import sys
 
 screen = turtle.Screen()
 screen.setup(725, 491)
@@ -63,10 +63,12 @@ while game_is_on:
                 if each not in already_guessed:
                     not_guessed["not_guessed_states"].append(each)
             df = pandas.DataFrame(not_guessed)
-            df.to_csv(path_or_buf="States-You-Forgot.cvs", mode="w")
+            df.to_csv(path_or_buf="states_to_learn.cvs", mode="w")
 
-            file_path = os.path.abspath("States-You-Forgot.cvs")
+            file_path = os.path.abspath("states_to_learn.cvs")
             messagebox.showinfo("Results!", f"Your total score is: {score}/50.\nThe states you missed are in {file_path}.\nPlease try again for a perfect score.")
+            turtle.bye()
+            sys.exit(0)
 
 
 
